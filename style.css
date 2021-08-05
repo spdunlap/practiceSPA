@@ -68,7 +68,7 @@ footer {
 @media (max-width: 549px){
   .hidden--mobile {
     display: none !important;
-  }  
+  }
 
   nav {
     display: flex;
@@ -116,7 +116,7 @@ footer {
     display: flex;
     justify-content: space-evenly;
     padding: 0 0;
-  } 
+  }
 
   nav > ul > li {
     display: inline-block;
@@ -146,4 +146,24 @@ footer {
     grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
     background-color: white;
   }
+}
+
+#blog {
+  margin: 60px;
+}
+
+#blog hr {
+  width: 80%;
+}
+
+#weather {
+  text-align: center;
+  width: 70%;
+  margin: 20px auto;
+}
+
+#shark {
+  max-width: 70%;
+  display: block;
+  margin: 0 auto;
 }
