@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const greetings = require("./routers/greetings");
+const pizzas = require("./routers/pizzas");
 
 // Import statements can go above^^^^
 // Instantiation
@@ -27,8 +28,10 @@ app.use(express.json());
 app.use(logging);
 
 app.use(greetings);
+app.use(pizzas);
 
 // Configuring Express Instance
+
 app.get("/status", (request, response) => {
   response.send(JSON.stringify({ message: "Service healthy" }));
 });
