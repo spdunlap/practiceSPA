@@ -1,14 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
 const greetings = require("./routers/greetings");
 const pizzas = require("./routers/pizzas");
+
+dotenv.config();
 
 // Import statements can go above^^^^
 // Instantiation
 const app = express();
 
-mongoose.connect("mongodb://localhost/pizzeria");
+mongoose.connect(process.env.MONGODB);
 const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "Connection error:"));
