@@ -18,7 +18,7 @@ function render(st = state.Home) {
   ${Footer()}
   `;
   router.updatePageLinks();
-  addEventListener(st);
+  addEventListeners(st);
 }
 
 function addEventListeners(st) {
@@ -53,6 +53,36 @@ function addEventListeners(st) {
       // add new picture to state.Gallery.pictures
       state.Gallery.pictures.push(newPic);
       render(state.Gallery);
+    });
+  }
+  if (st.view === "Order") {
+    document.querySelector("form").addEventListener("submit", event => {
+      event.preventDefault();
+      const inputList = event.target.elements;
+
+      const toppings = [];
+      for (let input of inputList.toppings) {
+        if (input.checked) {
+          toppings.push(input.value);
+        }
+      }
+
+      const requestData = {
+        crust: inputList.crust.value,
+        cheese: inputList.cheese.value,
+        sauce: inputList.sauce.value,
+        toppings: toppings
+      };
+
+      axios
+        .post(`${process.env.API}/pizzas`, requestData)
+        .then(response => {
+          state.Pizza.pizzas.push(response.data);
+          router.navigate("/pizza");
+        })
+        .catch(error => {
+          console.log("It puked", error);
+        });
     });
   }
 }
